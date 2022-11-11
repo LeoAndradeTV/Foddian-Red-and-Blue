@@ -106,6 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7732443868759779432}
+  - component: {fileID: -4024797413956462634}
   m_Layer: 0
   m_Name: Red Switch
   m_TagString: Untagged
@@ -131,6 +132,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4024797413956462634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093606241147777696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1b6154f90a8ce4799c15732ffc7ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: {fileID: 2883444592862564985}
 --- !u!1 &4585316384157990832
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,8 +155,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6872211230015976512}
   - component: {fileID: 2883444592862564985}
+  - component: {fileID: 915160648583266848}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Interaction Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,6 +191,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &915160648583266848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585316384157990832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 538786e7239516a4595c0d8ce8ddc593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction: 0
 --- !u!1 &6071685480096787271
 GameObject:
   m_ObjectHideFlags: 0
