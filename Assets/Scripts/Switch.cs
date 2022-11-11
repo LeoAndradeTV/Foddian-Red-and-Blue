@@ -96,6 +96,12 @@ public class Switch : MonoBehaviour
                 }
             }
         }
+        StartCoroutine(WaitForAnimation());
         
+    }
+    private IEnumerator WaitForAnimation()
+    {
+        yield return new WaitForSeconds(0.4f);
+        Actions.OnSwitchDoneMoving();
     }
 }

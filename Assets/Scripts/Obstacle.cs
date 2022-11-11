@@ -6,12 +6,12 @@ public class Obstacle : MonoBehaviour
 {
     private void OnEnable()
     {
-        Actions.OnSwitchPulled += SwitchVisibleObstacles;
+        Actions.OnSwitchDoneMoving += SwitchVisibleObstacles;
     }
 
     private void OnDisable()
     {
-        Actions.OnSwitchPulled -= SwitchVisibleObstacles;
+        Actions.OnSwitchDoneMoving -= SwitchVisibleObstacles;
     }
 
     private void SwitchVisibleObstacles()
