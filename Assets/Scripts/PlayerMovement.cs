@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveSpeed = 15f;
     private float horizontalInput;
-    private float jumpForce = 10f;
+    private float jumpForce = 7f;
 
     private bool getJumpInput;
     
@@ -27,14 +27,27 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        getJumpInput = Input.GetButtonDown("Jump");
-        movePosition = new Vector3(horizontalInput, 0f, 0f);
+        GetMovementInput();
         if (getJumpInput)
         {
             Jump();
         }
-        
+        CheckAndPullSwitch();
+    }
+
+    private static void CheckAndPullSwitch()
+    {
+        if (GameManager.Instance.switchIsInteractable && Input.GetKeyDown(KeyCode.E))
+        {
+            Actions.OnSwitchPulled();
+        }
+    }
+
+    private void GetMovementInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        getJumpInput = Input.GetButtonDown("Jump");
+        movePosition = new Vector3(horizontalInput, 0f, 0f);
     }
 
     private void Jump()
