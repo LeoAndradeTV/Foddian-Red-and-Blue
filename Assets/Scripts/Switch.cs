@@ -19,11 +19,13 @@ public class Switch : MonoBehaviour
     private void OnEnable()
     {
         Actions.OnSwitchPulled += ChangeSwitchState;
+        Actions.OnSwitchPulled += ChangeSwitchDirection;
     }
 
     private void OnDisable()
     {
         Actions.OnSwitchPulled -= ChangeSwitchState;
+        Actions.OnSwitchPulled += ChangeSwitchDirection;
     }
 
     private void ChangeSwitchState()
@@ -39,58 +41,61 @@ public class Switch : MonoBehaviour
             {
                 GameManager.Instance.currentState = SwitchStates.red;
                 animator.SetTrigger("Switch Touched");
-            }
-            if (gameObject.CompareTag("Red Switch"))
-            {
-                GameObject[] blueSwitches = GameObject.FindGameObjectsWithTag("Blue Switch");
-                if (direction == SwitchDirection.up)
-                {
-                    direction = SwitchDirection.down;
-                    animator.SetBool("isDown", true);
-                    
-                    foreach (GameObject o in blueSwitches)
-                    {
-                        o.GetComponent<Animator>().SetBool("isDown", false);
-                        o.GetComponent<Animator>().SetTrigger("Switch Touched");
-                    }
-                }
-                else
-                {
-                    direction = SwitchDirection.up;
-                    animator.SetBool("isDown", false);
-                    foreach (GameObject o in blueSwitches)
-                    {
-                        o.GetComponent<Animator>().SetBool("isDown", true);
-                        o.GetComponent<Animator>().SetTrigger("Switch Touched");
-                    }
-                }
-                Debug.Log("We got here");
-                
-            } else if (gameObject.CompareTag("Blue Switch"))
-            {
-                GameObject[] redSwitches = GameObject.FindGameObjectsWithTag("Red Switch");
-                if (direction == SwitchDirection.up)
-                {
-                    direction = SwitchDirection.down;
-                    animator.SetBool("isDown", false);
-                    foreach (GameObject o in redSwitches)
-                    {
-                        o.GetComponent<Animator>().SetBool("isDown", true);
-                        o.GetComponent<Animator>().SetTrigger("Switch Touched");
-                    }
-                }
-                else
-                {
-                    direction = SwitchDirection.up;
-                    animator.SetBool("isDown", true);
-                    foreach (GameObject o in redSwitches)
-                    {
-                        o.GetComponent<Animator>().SetBool("isDown", false);
-                        o.GetComponent<Animator>().SetTrigger("Switch Touched");
-                    }
-                }
-            }
+            } 
         }
     }
 
+    private void ChangeSwitchDirection()
+    {
+        if (gameObject.CompareTag("Red Switch"))
+        {
+            GameObject[] blueSwitches = GameObject.FindGameObjectsWithTag("Blue Switch");
+            if (direction == SwitchDirection.up)
+            {
+                direction = SwitchDirection.down;
+                animator.SetBool("isDown", true);
+
+                foreach (GameObject o in blueSwitches)
+                {
+                    o.GetComponent<Animator>().SetBool("isDown", false);
+                    o.GetComponent<Animator>().SetTrigger("Switch Touched");
+                }
+            }
+            else
+            {
+                direction = SwitchDirection.up;
+                animator.SetBool("isDown", false);
+                foreach (GameObject o in blueSwitches)
+                {
+                    o.GetComponent<Animator>().SetBool("isDown", true);
+                    o.GetComponent<Animator>().SetTrigger("Switch Touched");
+                }
+            }
+        }
+        else if (gameObject.CompareTag("Blue Switch"))
+        {
+            GameObject[] redSwitches = GameObject.FindGameObjectsWithTag("Red Switch");
+            if (direction == SwitchDirection.up)
+            {
+                direction = SwitchDirection.down;
+                animator.SetBool("isDown", false);
+                foreach (GameObject o in redSwitches)
+                {
+                    o.GetComponent<Animator>().SetBool("isDown", true);
+                    o.GetComponent<Animator>().SetTrigger("Switch Touched");
+                }
+            }
+            else
+            {
+                direction = SwitchDirection.up;
+                animator.SetBool("isDown", true);
+                foreach (GameObject o in redSwitches)
+                {
+                    o.GetComponent<Animator>().SetBool("isDown", false);
+                    o.GetComponent<Animator>().SetTrigger("Switch Touched");
+                }
+            }
+        }
+        
+    }
 }

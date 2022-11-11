@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 movePosition;
 
-    private float moveSpeed = 15f;
+    private float moveSpeed = 8f;
     private float horizontalInput;
     private float jumpForce = 7f;
 
