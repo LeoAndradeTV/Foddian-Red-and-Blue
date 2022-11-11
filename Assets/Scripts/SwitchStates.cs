@@ -8,3 +8,9 @@ public enum SwitchStates
     blue,
     none
 }
+
+public enum SwitchDirection
+{
+    up,
+    down
+}

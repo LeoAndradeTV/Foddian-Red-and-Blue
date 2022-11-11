@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Red Obstacle
   - Blue Obstacle
+  - Red Switch
+  - Blue Switch
   layers:
   - Default
   - TransparentFX
