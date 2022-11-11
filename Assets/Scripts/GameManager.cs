@@ -15,4 +15,5 @@ public class GameManager : MonoBehaviour
     }
 
     public bool switchIsInteractable = false;
+    public SwitchStates currentState = SwitchStates.none;
 }

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 57a56820053410c40b45c489e25ddbf9, type: 2}
+  - {fileID: 2100000, guid: 01bbf6e2d4b6b504fbb855891e97c487, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7732443868759779432}
   - component: {fileID: -4024797413956462634}
   m_Layer: 0
-  m_Name: Red Switch
+  m_Name: Blue Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,7 +187,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4585316384157990832}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.75

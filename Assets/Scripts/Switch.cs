@@ -5,7 +5,8 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
     [SerializeField] private SphereCollider interactionRadius;
-    private SwitchStates state = SwitchStates.none;
+
+    public bool isInteractable;
 
     private void OnEnable()
     {
@@ -19,14 +20,18 @@ public class Switch : MonoBehaviour
 
     private void ChangeSwitchState()
     {
-        if (state == SwitchStates.red)
+        if (isInteractable)
         {
-            state = SwitchStates.blue;
-            Debug.Log(state);
-        } else
-        {
-            state = SwitchStates.red;
-            Debug.Log(state);
+            if (GameManager.Instance.currentState == SwitchStates.red)
+            {
+                GameManager.Instance.currentState = SwitchStates.blue;
+                Debug.Log(GameManager.Instance.currentState);
+            }
+            else
+            {
+                GameManager.Instance.currentState = SwitchStates.red;
+                Debug.Log(GameManager.Instance.currentState);
+            }
         }
     }
 

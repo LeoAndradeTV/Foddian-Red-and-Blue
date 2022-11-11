@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchIsInteractable: 0
+  currentState: 2
 --- !u!4 &872115757
 Transform:
   m_ObjectHideFlags: 0
@@ -615,6 +616,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1426054075507034046, guid: 3e23fed05c855a245aac97db532901fc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5316199130175365181, guid: 3e23fed05c855a245aac97db532901fc, type: 3}
       propertyPath: m_Name
       value: Red Obstacle
@@ -672,6 +677,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2523722729601737863, guid: 201476d2b044ddc40af3ea103dc796dd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2650527546052703507, guid: 201476d2b044ddc40af3ea103dc796dd, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -719,6 +728,10 @@ PrefabInstance:
     - target: {fileID: 2733579182085546168, guid: 201476d2b044ddc40af3ea103dc796dd, type: 3}
       propertyPath: m_Name
       value: Blue Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373008588856956364, guid: 201476d2b044ddc40af3ea103dc796dd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 201476d2b044ddc40af3ea103dc796dd, type: 3}
