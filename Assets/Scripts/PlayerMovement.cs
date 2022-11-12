@@ -13,9 +13,14 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveSpeed = 8f;
     private float horizontalInput;
-    private float jumpForce = 7f;
+    private float startJumpForce = 400f;
+    private float timeAtBeginningOfJump;
+    private float timeAtEndingOfJump;
+    private float jumpMod;
+    private float timeDifference;
 
     private bool getJumpInput;
+    private bool isGrounded;
     
 
     // Start is called before the first frame update
@@ -28,10 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GetMovementInput();
-        if (getJumpInput)
-        {
-            Jump();
-        }
+        CheckJump();
         CheckAndPullSwitch();
     }
 
@@ -48,20 +50,37 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         getJumpInput = Input.GetButtonDown("Jump");
         movePosition = new Vector3(horizontalInput, 0f, 0f);
+        isGrounded = (Physics.Raycast(groundCheck.position, Vector3.down, 0.25f, groundLayer) || Physics.Raycast(groundCheck.position - new Vector3(1f, 0, 0), Vector3.down , 0.25f, groundLayer));
     }
 
-    private void Jump()
+    private void CheckJump()
     {
-        bool isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, 0.25f, groundLayer);
-        Debug.Log(isGrounded);
-        if (isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            timeAtBeginningOfJump = Time.time;
         }
+        if (Input.GetButton("Jump") && isGrounded)
+        {
+            timeDifference += Time.deltaTime;
+        }
+        if ((Input.GetButtonUp("Jump") || timeDifference > 1f) && isGrounded) 
+        {
+            timeAtEndingOfJump = Time.time;
+            jumpMod = 0.5f + (timeAtEndingOfJump - timeAtBeginningOfJump) * 1.05f;
+            jumpMod = Mathf.Clamp(jumpMod, 0.5f, 1.5f);
+            rb.AddForce(((Vector3.up * jumpMod) + movePosition) * startJumpForce, ForceMode.Impulse);
+            timeDifference = 0f;
+        }
+        
+
+
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(transform.position + (movePosition * moveSpeed * Time.fixedDeltaTime));
+        if (isGrounded && !Input.GetButton("Jump"))
+        {
+            rb.MovePosition(transform.position + (movePosition * moveSpeed * Time.fixedDeltaTime));
+        }
     }
 }
