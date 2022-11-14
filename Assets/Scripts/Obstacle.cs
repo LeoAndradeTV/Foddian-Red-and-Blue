@@ -18,23 +18,29 @@ public class Obstacle : MonoBehaviour
     {
         if (GameManager.Instance.currentState == SwitchStates.red && gameObject.CompareTag("Blue Obstacle"))
         {
-            transform.GetComponentInChildren<MeshRenderer>().enabled = false;
             GetComponent<MeshRenderer>().enabled = false;
-            
-        } else if (GameManager.Instance.currentState == SwitchStates.blue && gameObject.CompareTag("Red Obstacle"))
-        {
+            Debug.Log(transform.childCount);
             if (transform.childCount > 0)
             {
-                transform.GetComponentInChildren<MeshRenderer>().enabled = false;
+                transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             }
+
+        } else if (GameManager.Instance.currentState == SwitchStates.blue && gameObject.CompareTag("Red Obstacle"))
+        {
             GetComponent<MeshRenderer>().enabled = false;
-            
+            if (transform.childCount > 0)
+            {
+                transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            }
+
         }
         else
         {
-            transform.GetComponentInChildren<MeshRenderer>().enabled = true;
             GetComponent<MeshRenderer>().enabled = true;
-            
+            if (transform.childCount > 0)
+            {
+                transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+            }
 
         }
     }
