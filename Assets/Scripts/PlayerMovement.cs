@@ -9,9 +9,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
 
-    private Vector3 movePosition;
+    private Vector3 movePosition; 
 
-    private float moveSpeed = 8f;
+    private float moveSpeed = 1000f;
     private float horizontalInput;
     private float startJumpForce = 400f;
     private float timeAtBeginningOfJump;
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         getJumpInput = Input.GetButtonDown("Jump");
         movePosition = new Vector3(horizontalInput, 0f, 0f);
-        isGrounded = (Physics.Raycast(groundCheck.position, Vector3.down, 0.25f, groundLayer) || Physics.Raycast(groundCheck.position - new Vector3(1f, 0, 0), Vector3.down , 0.25f, groundLayer));
+        isGrounded = (Physics.Raycast(groundCheck.position, Vector3.down, 0.75f, groundLayer)) || (Physics.Raycast(groundCheck.position - new Vector3(1.75f, 0, 0), Vector3.down , 0.75f, groundLayer) || (Physics.Raycast(groundCheck.position - new Vector3(0.75f, 0, 0), Vector3.down, 0.75f, groundLayer)));
     }
 
     private void CheckJump()
@@ -69,18 +69,19 @@ public class PlayerMovement : MonoBehaviour
             jumpMod = 0.5f + (timeAtEndingOfJump - timeAtBeginningOfJump) * 1.05f;
             jumpMod = Mathf.Clamp(jumpMod, 0.5f, 1.5f);
             rb.AddForce(((Vector3.up * jumpMod) + movePosition) * startJumpForce, ForceMode.Impulse);
-            timeDifference = 0f;
+            if (isGrounded)
+            {
+                timeDifference = 0f;
+            }
         }
         
-
-
     }
 
     private void FixedUpdate()
     {
         if (isGrounded && !Input.GetButton("Jump"))
         {
-            rb.MovePosition(transform.position + (movePosition * moveSpeed * Time.fixedDeltaTime));
-        }
+            rb.AddForce(movePosition * moveSpeed, ForceMode.Force);
+        } 
     }
 }
