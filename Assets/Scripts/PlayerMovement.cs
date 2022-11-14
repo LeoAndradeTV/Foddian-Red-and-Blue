@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         getJumpInput = Input.GetButtonDown("Jump");
         movePosition = new Vector3(horizontalInput, 0f, 0f);
-        isGrounded = (Physics.Raycast(groundCheck.position, Vector3.down, 0.75f, groundLayer)) || (Physics.Raycast(groundCheck.position - new Vector3(1.75f, 0, 0), Vector3.down , 0.75f, groundLayer) || (Physics.Raycast(groundCheck.position - new Vector3(0.75f, 0, 0), Vector3.down, 0.75f, groundLayer)));
+        isGrounded = (Physics.Raycast(groundCheck.position, Vector3.down, 0.2f, groundLayer)) || (Physics.Raycast(groundCheck.position - new Vector3(1.75f, 0, 0), Vector3.down , 0.2f, groundLayer) || (Physics.Raycast(groundCheck.position - new Vector3(0.75f, 0, 0), Vector3.down, 0.2f, groundLayer)));
     }
 
     private void CheckJump()
