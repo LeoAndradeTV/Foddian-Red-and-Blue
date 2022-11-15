@@ -7,19 +7,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private float moveSpeed = 1000f;
+    [SerializeField] private float startJumpForce = 400f;
+
     private Rigidbody rb;
 
-    private Vector3 movePosition; 
+    private Vector3 movePosition;
 
-    private float moveSpeed = 1000f;
     private float horizontalInput;
-    private float startJumpForce = 400f;
     private float timeAtBeginningOfJump;
     private float timeAtEndingOfJump;
     private float jumpMod;
     private float timeDifference;
 
-    private Vector3 startPosition;
+    private Vector3 savePosition;
 
     private bool getJumpInput;
     private bool isGrounded;
@@ -29,16 +30,20 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        startPosition = transform.position;
+        savePosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         // THIS IS A CHEAT
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            savePosition = transform.position;
+        }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            transform.position = startPosition;
+            transform.position = savePosition;
         }
         GetMovementInput();
         CheckJump();
