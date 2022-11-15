@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2146240175098083229}
   - component: {fileID: 1426054075507034046}
   - component: {fileID: 1430496508494524743}
-  - component: {fileID: 6544467619807642409}
   - component: {fileID: -2289752983864328412}
+  - component: {fileID: 6439851267178164242}
   m_Layer: 3
   m_Name: Red Obstacle Bouncy
   m_TagString: Red Obstacle
@@ -99,18 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6544467619807642409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5316199130175365181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d427890dd2d3d4e80dfff57970a840, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &-2289752983864328412
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,3 +115,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &6439851267178164242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5316199130175365181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c750e53b9cd524d9c3514935f7e500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRb: {fileID: 1504385803234097771, guid: 0f5f837cf5a71ec41bf5f155eb4d0e7b, type: 3}

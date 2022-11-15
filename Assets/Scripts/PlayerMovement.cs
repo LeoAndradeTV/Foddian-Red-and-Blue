@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private float jumpMod;
     private float timeDifference;
 
+    private Vector3 startPosition;
+
     private bool getJumpInput;
     private bool isGrounded;
     
@@ -27,11 +29,17 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // THIS IS A CHEAT
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            transform.position = startPosition;
+        }
         GetMovementInput();
         CheckJump();
         CheckAndPullSwitch();
@@ -82,6 +90,6 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && !Input.GetButton("Jump"))
         {
             rb.AddForce(movePosition * moveSpeed, ForceMode.Force);
-        } 
+        }  
     }
 }
