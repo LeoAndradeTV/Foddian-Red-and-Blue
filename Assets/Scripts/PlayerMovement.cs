@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 savePosition;
 
-    private bool getJumpInput;
     public bool isGrounded;
     
 
@@ -104,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
         
-        getJumpInput = Input.GetButtonDown("Jump");
         movePosition = new Vector3(horizontalInput, 0f, 0f);
 
         isGrounded = CheckIsGrounded(groundCheckFront, groundLayer) || CheckIsGrounded(groundCheckBack, groundLayer);
