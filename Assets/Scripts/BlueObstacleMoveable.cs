@@ -48,7 +48,7 @@ public class BlueObstacleMoveable : BlueObstacle, IMoveable
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.transform.parent = null;
-            player.isGroundedRange = 0.15f;
+            player.isGroundedRange = 0.05f;
         }
     }
 }
