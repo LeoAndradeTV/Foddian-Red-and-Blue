@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RedObstacleMoveable : RedObstacle, IMoveable
 {
+    private PlayerMovement player;
+
     private Vector3 startPos;
     [SerializeField] private Vector3 endPos;
 
@@ -17,6 +19,7 @@ public class RedObstacleMoveable : RedObstacle, IMoveable
 
     private void Awake()
     {
+        player = GameObject.FindObjectOfType<PlayerMovement>();
         startPos = transform.position;
         Move();
     }
@@ -35,6 +38,7 @@ public class RedObstacleMoveable : RedObstacle, IMoveable
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.transform.parent = transform;
+            player.isGroundedRange = 0.5f;
         }
     }
 
@@ -43,6 +47,7 @@ public class RedObstacleMoveable : RedObstacle, IMoveable
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.transform.parent = null;
+            player.isGroundedRange = 0.15f;
         }
     }
 }
