@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 1000f;
     [SerializeField] private float startJumpForce = 400f;
+    [SerializeField] private float gravityMod = 5f;
 
     private Rigidbody rb;
 
@@ -129,14 +130,18 @@ public class PlayerMovement : MonoBehaviour
         {
             
             timeAtEndingOfJump = Time.time;
-            jumpMod = 0.65f + (timeAtEndingOfJump - timeAtBeginningOfJump) * 1.05f;
-            jumpMod = Mathf.Clamp(jumpMod, 0.65f, 1.65f);
+            jumpMod = 0.5f + (timeAtEndingOfJump - timeAtBeginningOfJump) * 1.05f;
+            jumpMod = Mathf.Clamp(jumpMod, 0.5f, 1.5f);
             Vector3 forceToAdd = ((Vector3.up * jumpMod) + movePosition) * startJumpForce;
             rb.AddForce(forceToAdd, ForceMode.Impulse);
             if (isGrounded)
             {
                 timeDifference = 0f;
             }
+        }
+        if (!isGrounded)
+        {
+            rb.AddForce(Vector3.down * gravityMod, ForceMode.Acceleration);
         }
         animator.SetBool("isLoadingJump", Input.GetButton("Jump") && isGrounded);
         animator.SetBool("isGrounded", isGrounded);
