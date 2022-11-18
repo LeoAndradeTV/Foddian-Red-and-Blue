@@ -1062,8 +1062,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  moveSpeed: 350
-  startJumpForce: 750
+  moveSpeed: 50000
+  startJumpForce: 655
   gravityMod: 3
   isGroundedRange: 0.05
   isGrounded: 0
