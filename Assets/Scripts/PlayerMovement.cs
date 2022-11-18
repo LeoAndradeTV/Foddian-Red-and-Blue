@@ -52,10 +52,15 @@ public class PlayerMovement : MonoBehaviour
             transform.position = savePosition;
         }
         GetMovementInput(); 
-        ProcessMovement();
         ProcessRotation();
         CheckJump();
         CheckAndPullSwitch();
+    }
+
+    private void LateUpdate()
+    {
+        ProcessMovement();
+        
     }
 
     private void ProcessRotation()
@@ -73,14 +78,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded && !Input.GetButton("Jump"))
         {
-            rb.AddForce(movePosition * moveSpeed, ForceMode.Force);
+            rb.AddForce(movePosition * moveSpeed * Time.deltaTime, ForceMode.Force);
+            Debug.Log(movePosition);
             if (horizontalInput == 0)
             {
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
             }
-        } 
-        
+        }
+
     }
 
     private static void CheckAndPullSwitch()
@@ -131,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
             
             timeAtEndingOfJump = Time.time;
             jumpMod = 0.5f + (timeAtEndingOfJump - timeAtBeginningOfJump) * 1.05f;
-            jumpMod = Mathf.Clamp(jumpMod, 0.5f, 1.5f);
+            jumpMod = Mathf.Clamp(jumpMod, 0.5f, 1.75f);
             Vector3 forceToAdd = ((Vector3.up * jumpMod) + movePosition) * startJumpForce;
             rb.AddForce(forceToAdd, ForceMode.Impulse);
             if (isGrounded)
